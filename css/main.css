@@ -751,10 +751,12 @@ footer h2{
   display: inline-block;
 }
 .copyright{
+  width: 100%;
   background: white;
   padding: 10px 50px 30px;
   text-align: center;
 }
+
 .copyright h2{
   display: inline;
   padding-right: 30px;
@@ -763,9 +765,24 @@ footer h2{
 }
 .copyright img{
   display: inline;
-  width: 110px;
+  width: 140px;
   height: auto;
-  margin-bottom: -20px;
+  margin-bottom: -25px;
+}
+
+@media (max-width: 767px) {
+  .copyright{
+    width: 100vw;
+  }
+  .copyright h2{
+    font-size: 16px;
+  }
+  .copyright img{
+    width: 30vw;
+  }
+  .bechara{
+    padding-top: 20px;
+  }
 }
 /* select:active, select:hover{
   outline-color: red;
