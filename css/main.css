@@ -683,6 +683,7 @@ input {
   color: #525252;
   font-size: 16px;
   font-weight: 500;
+  text-align: center;
 }
 .notice a{
   text-decoration: none;
@@ -707,4 +708,38 @@ input {
 .title span{
   color: red;
   font-weight: 500;
+}
+footer{
+  background: #1A2735;
+  color: white;
+  padding: 20px 50px;
+  
+}
+footer h2{
+  font-size: 16px;
+}
+.col{
+  width: 33.33%;
+  padding-bottom: 40px;
+}
+.block-center {
+  text-align: left;
+  display: inline-block;
+}
+.copyright{
+  background: white;
+  padding: 10px 50px 30px;
+  text-align: center;
+}
+.copyright h2{
+  display: inline;
+  padding-right: 30px;
+  font-size: 20px;
+  color: #555;
+}
+.copyright img{
+  display: inline;
+  width: 110px;
+  height: auto;
+  margin-bottom: -20px;
 }
