@@ -759,3 +759,10 @@ footer h2{
   height: auto;
   margin-bottom: -20px;
 }
+/* select:active, select:hover{
+  outline-color: red;
+} */
+.select2-container--default .select2-results__option--highlighted[aria-selected]{
+  background-color: red;
+  color: white;
+}
