@@ -184,7 +184,14 @@ h6 {
   background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
   background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
 }
-
+.bg-gra-03{
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+}
+.bg-gra-04{
+  background-color: #ffffff;
+background-image: linear-gradient(180deg, #ffffff 80%, #ffd0d3 100%);
+}
 /* ==========================================================================
    #SPACING
    ========================================================================== */
@@ -411,6 +418,14 @@ input {
   display: block;
   margin-bottom: 5px;
 }
+.label-2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: red;
+  text-transform: capitalize;
+  display: block;
+  margin-bottom: 5px;
+}
 
 .radio-container {
   display: inline-block;
@@ -452,7 +467,8 @@ input {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  background: #57b846;
+  /* background: #57b846; */
+  background: red;
 }
 
 .checkmark {
@@ -608,6 +624,10 @@ input {
   color: #525252;
   font-weight: 400;
   margin-bottom: 40px;
+  line-height: 1.5em;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -639,4 +659,52 @@ input {
   .card-4 .card-body {
     padding: 50px 40px;
   }
+}
+
+.nav-holder{
+  width: 100%;
+  /* background: white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:20px 0;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.nav-holder img{
+  width: 200px;
+  height: auto;
+  
+}
+.notice{
+  color: #525252;
+  font-size: 16px;
+  font-weight: 500;
+}
+.notice a{
+  text-decoration: none;
+  color: red;
+  font-size: 22px;
+  font-weight: 500;
+  padding: 0 15px;
+}
+.notice a:hover{
+  font-size: 26px;
+}
+.submit{
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.submit .btn{
+  background: red;
+  color: white;
+}
+.title span{
+  color: red;
+  font-weight: 500;
 }

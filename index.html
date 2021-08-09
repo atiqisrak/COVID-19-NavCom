@@ -27,11 +27,19 @@
 </head>
 
 <body>
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <!-- Navbar Starts -->
+    <Header>
+        <div class="nav-holder bg-gra-04">
+            <img src="navana_logo.png" alt="Navana Official Logo">
+        </div>
+    </Header>
+    <!-- Navbar Ends -->
+    <!-- Main Page -->
+    <div class="page-wrapper bg-gra-03 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">COVID-19 Vaccination Registration Form</h2>
+                    <h2 class="title"><span>COVID-19</span> Vaccination Registration</h2>
                     <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">
@@ -95,6 +103,15 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
+                                    <div class="label-2">
+                                        If Yes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
                                     <label class="label">1st Dose</label>
                                     <div class="input-group-icon">
                                         <input class="input--style-4 js-datepicker" type="text" name="birthday">
@@ -117,10 +134,11 @@
                             <input class="input--style-4" type="text" name="name">
                         </div>
                         <div class="input-group">
-                            <label>Please Register in <a href="https://surokkha.gov.bd/enroll">Surokkha</a> if not Registered yet.</label>
+                            <label class="notice font-poppins">Please Register in <a href="https://surokkha.gov.bd/enroll">
+                                সুরক্ষা</a> if not Registered yet.</label>
                         </div>
-                        <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        <div class="submit">
+                            <button class="btn btn--radius-2" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
