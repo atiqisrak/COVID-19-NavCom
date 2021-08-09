@@ -677,7 +677,15 @@ input {
 .nav-holder img{
   width: 200px;
   height: auto;
-  
+}
+
+@media (max-width: 767px) {
+  .nav-holder{
+    width: 100vw;
+  }
+  .nav-holder img{
+    width: 20vw;
+  }
 }
 .notice{
   color: #525252;
