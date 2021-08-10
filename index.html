@@ -113,22 +113,22 @@
                                     <label class="label">Vaccinated ?</label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Yes
-                                            <input type="radio" checked="checked" name="vaccinated">
+                                            <input type="radio" checked="checked" name="vaccinated" value="yes">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container m-r-45">No
-                                            <input type="radio" name="vaccinated">
+                                            <input type="radio" name="vaccinated" value="no">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container bechara">Registered But Not Vaccinated Yet
-                                            <input type="radio" name="vaccinated">
+                                            <input type="radio" name="vaccinated" value="bechara">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row row-space">
+                        <!-- <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <div class="label-2">
@@ -136,13 +136,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row row-space">
+                        </div> -->
+                        <div class="row row-space yes box">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">1st Dose</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <input class="input--style-4 js-datepicker" type="text" name="1st-dose">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -151,17 +151,26 @@
                                 <div class="input-group">
                                     <label class="label">2nd Dose</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <input class="input--style-4 js-datepicker" type="text" name="2nd-dose">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group">
+
+                        <div class="input-group bechara box hide">
+                            <label class="label">Date Of Registration</label>
+                            <div class="input-group-icon">
+                                <input class="input--style-4 js-datepicker" type="text" name="reg-date">
+                                <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                            </div>
+                        </div>
+
+                        <!-- <div class="input-group">
                             <label class="label">Vaccination Center</label>
                             <input class="input--style-4" type="text" name="name">
-                        </div>
-                        <div class="input-group">
+                        </div> -->
+                        <div class="input-group no box hide">
                             <label class="notice font-poppins">Please Register in <a href="https://surokkha.gov.bd/enroll">
                                 সুরক্ষা</a> if not Registered yet.</label>
                         </div>
