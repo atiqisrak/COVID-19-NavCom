@@ -5,12 +5,12 @@
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="COVID-19 Registration by NavCom">
+    <meta name="description" content="COVID-19 Vaccination Form by Navcom">
     <meta name="author" content="Atiq Israk">
-    <meta name="keywords" content="COVID-19 Registration by NavCom">
+    <meta name="keywords" content="COVID-19 Vaccination Form by Navcom">
 
     <!-- Title Page-->
-    <title>COVID-19 Registration by NavCom</title>
+    <title>COVID-19 Vaccination Form by Navcom</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -40,50 +40,56 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title"><span>COVID-19</span> Vaccination Registration</h2>
-                    <form method="POST">
+
+                    <!------------- Form Starts Here  ------------>
+
+                    <form method="POST" action="submit">
                         <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Office ID<span class="required"> *</span></label>
-                                    <input class="input--style-4" type="text" name="office_id" required>
-                                </div>
-                            </div>
+                            
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Name<span class="required"> *</span></label>
                                     <input class="input--style-4" type="text" name="name" required>
                                 </div>
                             </div>
+
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Office ID<span class="required"> *</span></label>
+                                    <input class="input--style-4" type="text" name="office_id" required>
+                                </div>
+                            </div>
+                            
                         </div>
 
                         <div class="input-group">
                             <label class="label">Concern<span class="required"> *</span></label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="concern">
-                                    <option disabled="disabled" selected="selected">Choose Concern</option>
-                                    <option>Navana Limited (Toyota vehicle)</option>
-                                    <option>Navana Toyota Service Center</option>
-                                    <option>Navana Limited (Hino Commercial vehicle)</option>
-                                    <option>Navana Limited (Hino Commercial Vehicle Service Centre)</option>
-                                    <option>Navana Limited (Industrial Equipment)</option>
-                                    <option>ftab Automobiles Limited (Assembly Unit)</option>
-                                    <option>Aftab Automobiles Limited (Bus & Body Fabrication Unit)</option>
-                                    <option>Navana Real Estate Limited</option>
-                                    <option>Navana Construction Limited</option>
-                                    <option>Navana Interlinks Limited</option>
-                                    <option>Navana Electronics Limited</option>
-                                    <option>Navana Furniture Limited</option>
-                                    <option>Navana Batteries Limited</option>
-                                    <option>NAVANA CNG LIMITED</option>
-                                    <option>Navana Logistics Limited</option>
-                                    <option>Navana Petroleum Limited</option>
-                                    <option>Navana Building Product Limited</option>
-                                    <option>Navana Engineering Limited</option>
-                                    <option>Navana Welding Electrode Limited</option>
-                                    <option>Navana LPG Limited</option>
-                                    <option>Navana Foods Limited</option>
-                                    <option>Navana Communication</option>
-                                    <option>Navana Defense Sales</option>
+                                <select name="concern_name" required>
+                                    <option disabled="disabled" selected="selected" value="">Choose Concern</option>
+                                    <option value="Navana Limited (Toyota vehicle)">Navana Limited (Toyota vehicle)</option>
+                                    <option value="Navana Limited (Toyota Service Center)">Navana Limited (Toyota Service Center)</option>
+                                    <option value="Navana Limited (Hino Commercial vehicle)">Navana Limited (Hino Commercial vehicle)</option>
+                                    <option value="Navana Limited (Hino Commercial Vehicle Service Centre)">Navana Limited (Hino Commercial Vehicle Service Centre)</option>
+                                    <option value="Navana Limited (Industrial Equipment)">Navana Limited (Industrial Equipment)</option>
+                                    <option value="Aftab Automobiles Limited (Assembly Unit)">Aftab Automobiles Limited (Assembly Unit)</option>
+                                    <option value="Aftab Automobiles Limited (Bus & Body Fabrication Unit)">Aftab Automobiles Limited (Bus & Body Fabrication Unit)</option>
+                                    <option value="Navana Real Estate Limited">Navana Real Estate Limited</option>
+                                    <option value="Navana Construction Limited">Navana Construction Limited</option>
+                                    <option value="Navana Interlinks Limited">Navana Interlinks Limited</option>
+                                    <option value="Navana Electronics Limited">Navana Electronics Limited</option>
+                                    <option value="Navana Furniture Limited">Navana Furniture Limited</option>
+                                    <option value="Navana Batteries Limited">Navana Batteries Limited</option>
+                                    <option value="NAVANA CNG LIMITED">NAVANA CNG LIMITED</option>
+                                    <option value="Navana Logistics Limited">Navana Logistics Limited</option>
+                                    <option value="Navana Petroleum Limited">Navana Petroleum Limited</option>
+                                    <option value="Navana Building Product Limited">Navana Building Product Limited</option>
+                                    <option value="Navana Engineering Limited">Navana Engineering Limited</option>
+                                    <option value="Navana Welding Electrode Limited">Navana Welding Electrode Limited</option>
+                                    <option value="Navana LPG Limited">Navana LPG Limited</option>
+                                    <option value="Navana Foods Limited">Navana Foods Limited</option>
+                                    <option value="Navana Communication">Navana Communication</option>
+                                    <option value="Navana Defense Sales">Navana Defense Sales</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
@@ -113,15 +119,15 @@
                                     <label class="label">Vaccinated ?<span class="required"> *</span></label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Yes
-                                            <input type="radio" checked="checked" name="vaccinated" id="yes">
+                                            <input type="radio" checked="checked" name="vaccinated" id="yes" value="Yes">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container m-r-45">No
-                                            <input type="radio" name="vaccinated" id="no">
+                                            <input type="radio" name="vaccinated" id="no" value="No">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container bechara">Registered But Not Vaccinated Yet
-                                            <input type="radio" name="vaccinated" id="bechara">
+                                            <input type="radio" name="vaccinated" id="bechara" value="Registered, but not Vaccinated yet"> 
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -142,7 +148,7 @@
                                 <div class="input-group">
                                     <label class="label">1st Dose</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="1st-dose">
+                                        <input class="input--style-4 js-datepicker" type="text" name="first_dose">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -151,7 +157,7 @@
                                 <div class="input-group">
                                     <label class="label">2nd Dose</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="2nd-dose">
+                                        <input class="input--style-4 js-datepicker" type="text" name="second_dose">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -161,7 +167,7 @@
                         <div class="input-group bechara box hide">
                             <label class="label">Date Of Registration</label>
                             <div class="input-group-icon">
-                                <input class="input--style-4 js-datepicker" type="text" name="reg-date">
+                                <input class="input--style-4 js-datepicker" type="text" name="reg_date">
                                 <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                             </div>
                         </div>

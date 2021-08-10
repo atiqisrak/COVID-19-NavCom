@@ -1,0 +1,135 @@
+<?php
+
+    $office_id = $_POST['office_id'];
+    $employee_name = $_POST['name'];
+    $concern_name = $_POST['concern_name'];
+    $nid = $_POST['nid'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $vaccinated = $_POST['vaccinated'];
+    $first_dose = $_POST['first_dose'];
+    $second_dose = $_POST['second_dose'];
+    $reg_date = $_POST['reg_date'];
+
+    // Converting Date to DateTime format
+    if (!empty($first_dose)) {
+        $first_dose = date('Y-m-d', strtotime($first_dose));
+
+        echo '1st dose: ' . $first_dose . '<br>';
+    } 
+
+    if (!empty($second_dose)) {
+        $second_dose = date('Y-m-d', strtotime($second_dose));
+        echo '2nd dose: ' . $second_dose . '<br>';
+    }
+
+    if (!empty($reg_date)) {
+        $reg_date = date('Y-m-d', strtotime($reg_date));
+        echo 'Reg date: ' . $reg_date . '<br>';
+    }
+
+
+    // Dependencies:
+    require "includes/db.php";
+
+
+    // Check if user already registered
+    try {
+        //Get db class
+        $pdo = new db();
+
+        //Connect to db
+        $pdo = $pdo->connect();
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+
+        $sql = "SELECT nid FROM Vaccinated WHERE nid = :nid";
+
+        $query = $pdo->prepare($sql);
+        $query->bindParam(':nid', $nid, PDO::PARAM_STR);
+        $query->execute();
+        $resultArray = $query->fetch(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e){
+        echo 'Error: ' . $e->getMessage();
+    }	
+        
+    if(!ISSET($resultArray['nid'])){              // Insert New Entry
+        try {
+            //Get db class
+            $pdo = new db();
+
+            //Connect to db
+            $pdo = $pdo->connect();
+
+            $sql = "INSERT INTO Vaccinated(office_id, employee_name, concern_name, nid, email, phone, vaccinated, first_dose, second_dose, reg_date)
+                    VALUES(:office_id, :employee_name, :concern_name, :nid, :email, :phone, :vaccinated, :first_dose, :second_dose, :reg_date)";
+
+            $query = $pdo->prepare($sql);
+
+            $query->bindParam(':office_id', $office_id, PDO::PARAM_STR);
+            $query->bindParam(':employee_name', $employee_name, PDO::PARAM_STR);
+            $query->bindParam(':concern_name', $concern_name, PDO::PARAM_STR);
+            $query->bindParam(':nid', $nid, PDO::PARAM_STR);
+            $query->bindParam(':email', $email, PDO::PARAM_STR);
+            $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+            $query->bindParam(':vaccinated', $vaccinated, PDO::PARAM_STR);
+            $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
+            $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
+            $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+
+            $query->execute();
+
+            if (!$query){
+                echo 'Error: ' . $e->getMessage();
+            } else {
+                echo 'Your entry has been added!';
+            }
+
+        } catch (PDOException $e){
+            echo 'Error: ' . $e->getMessage();
+        }
+
+
+    } else {                        // Update Entry
+        
+        try {
+            //Get db class
+            $pdo = new db();
+        
+            //Connect to db
+            $pdo = $pdo->connect();
+        
+            $sql = "UPDATE Vaccinated SET office_id = :office_id, employee_name = :employee_name, concern_name=:reg_date, 
+                    email = :email, phone = :phone, vaccinated=:vaccinated, first_dose=:first_dose,  second_dose=:second_dose, center_name=:reg_date
+                    WHERE nid = :nid";
+        
+            $query = $pdo->prepare($sql);
+        
+            $query->bindParam(':office_id', $office_id, PDO::PARAM_STR);
+            $query->bindParam(':employee_name', $employee_name, PDO::PARAM_STR);
+            $query->bindParam(':concern_name', $concern_name, PDO::PARAM_STR);
+            $query->bindParam(':nid', $nid, PDO::PARAM_STR);
+            $query->bindParam(':email', $email, PDO::PARAM_STR);
+            $query->bindParam(':phone', $phone, PDO::PARAM_STR);
+            $query->bindParam(':vaccinated', $vaccinated, PDO::PARAM_STR);
+            $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
+            $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
+            $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+        
+            $query->execute();
+        
+            if (!$query){
+                echo 'Error: ' . $e->getMessage();
+            } else {
+                echo 'Your entry has been updated!';
+            }
+        
+        } catch (PDOException $e){
+            echo 'Error: ' . $e->getMessage();
+        }
+
+    }
+
+
+
+    ?>
