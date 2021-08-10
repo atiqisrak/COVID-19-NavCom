@@ -872,6 +872,7 @@ footer h2{
   font-size: 20px;
   font-weight: 400;
   letter-spacing: 0.6px;
+  transition: ease-in-out 0.3s;
 }
 .submit:hover .btn:hover{
   background: red;
