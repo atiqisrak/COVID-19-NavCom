@@ -703,16 +703,6 @@ input {
 .notice a:hover{
   font-size: 26px;
 }
-.submit{
-  padding-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.submit .btn{
-  background: red;
-  color: white;
-}
 .title span{
   color: red;
   font-weight: 500;
@@ -794,4 +784,97 @@ footer h2{
 
 .hide{
   display: none;
+}
+
+
+.surokkha1{
+  margin: 20px 0 0 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.surokkha2 {
+  height: 10vh;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.surokkha3 {
+  width: 150px;
+  height: 50px;
+  border: 2px solid red;
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+  transition: 1s;
+  border-radius: 3px;
+}
+
+.surokkha3::before, .surokkha3::after {
+  position: absolute;
+  background: white;
+  z-index: -1;
+  transition: 1s;
+  content: '';
+}
+
+.surokkha3::before {
+  height: 50px;
+  width: 130px;
+}
+
+.surokkha3::after {
+  width: 150px;
+  height: 30px;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.surokkha3:hover::before {
+  width: 0px;
+  background: #fff;
+}
+
+.surokkha3:hover::after {
+  height: 0px;
+  background: #fff;
+}
+
+.surokkha3:hover {
+  background: #fff;
+}
+
+.submit{
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.submit .btn{
+  background: white;
+  color: red;
+  border: 2px solid red;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+}
+.submit:hover .btn:hover{
+  background: red;
+  color: white;
+  border: 2px solid red;
 }
