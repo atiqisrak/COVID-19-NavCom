@@ -31,7 +31,13 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-
+.row-center{
+  -webkit-box-pack: justify;
+  -webkit-justify-content: center;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: center;
+}
 .col-2 {
   width: -webkit-calc((100% - 30px) / 2);
   width: -moz-calc((100% - 30px) / 2);
