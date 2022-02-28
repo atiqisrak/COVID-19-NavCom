@@ -46,27 +46,38 @@
                         $office_id = $_POST['office_id'];
                         $employee_name = $_POST['name'];
                         $concern_name = $_POST['concern_name'];
-                        $nid = $_POST['nid'];
                         $email = $_POST['email'];
                         $phone = $_POST['phone'];
                         $vaccinated = $_POST['vaccinated'];
                         $first_dose = $_POST['first_dose'];
                         $second_dose = $_POST['second_dose'];
+                        $booster_dose = $_POST['booster_dose'];
                         $reg_date = $_POST['reg_date'];
+                        $national_id = $_POST['national_id'];
+
 
                         // Converting Date to DateTime format
                         if (!empty($first_dose)) {
-                            $first_dose = date('Y-m-d', strtotime($first_dose));
-                        } 
+                            $date = str_replace('/', '-', $first_dose);
+                            $first_dose = date('Y-m-d', strtotime($date));
+                        }
 
                         if (!empty($second_dose)) {
-                            $second_dose = date('Y-m-d', strtotime($second_dose));
+                            $date = str_replace('/', '-', $second_dose);
+                            $second_dose = date('Y-m-d', strtotime($date));
+                        }
+
+                        if (!empty($booster_dose)) {
+                            $date = str_replace('/', '-', $booster_dose);
+                            $booster_dose = date('Y-m-d', strtotime($date));
                         }
 
                         if (!empty($reg_date)) {
-                            $reg_date = date('Y-m-d', strtotime($reg_date));
+                            $date = str_replace('/', '-', $reg_date);
+                            $reg_date = date('Y-m-d', strtotime($date));
                         }
 
+                        
 
                         // Dependencies:
                         require "includes/db.php";
@@ -74,6 +85,7 @@
 
                         // Check if user already registered
                         try {
+
                             //Get db class
                             $pdo = new db();
 
@@ -81,10 +93,10 @@
                             $pdo = $pdo->connect();
                             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
 
-                            $sql = "SELECT nid FROM Vaccinated WHERE nid = :nid";
+                            $sql = "SELECT form_id FROM Vaccinated WHERE national_id = :national_id";
 
                             $query = $pdo->prepare($sql);
-                            $query->bindParam(':nid', $nid, PDO::PARAM_STR);
+                            $query->bindParam(':national_id', $national_id, PDO::PARAM_STR);
                             $query->execute();
                             $resultArray = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -92,29 +104,55 @@
                             echo 'Error: ' . $e->getMessage();
                         }	
                             
-                        if(!ISSET($resultArray['nid'])){              // Insert New Entry
+                        if(!ISSET($resultArray['form_id'])){              // Insert New Entry
                             try {
+
+
                                 //Get db class
                                 $pdo = new db();
 
                                 //Connect to db
                                 $pdo = $pdo->connect();
 
-                                $sql = "INSERT INTO Vaccinated(office_id, employee_name, concern_name, nid, email, phone, vaccinated, first_dose, second_dose, reg_date)
-                                        VALUES(:office_id, :employee_name, :concern_name, :nid, :email, :phone, :vaccinated, :first_dose, :second_dose, :reg_date)";
+                                $sql = "INSERT INTO Vaccinated (office_id, employee_name, concern_name, email, phone, vaccinated, first_dose, second_dose, booster_dose, reg_date, national_id) 
+                                        VALUES (:office_id, :employee_name, :concern_name, :email, :phone, :vaccinated, :first_dose, :second_dose, :booster_dose, :reg_date, :national_id)";
 
                                 $query = $pdo->prepare($sql);
 
                                 $query->bindParam(':office_id', $office_id, PDO::PARAM_STR);
                                 $query->bindParam(':employee_name', $employee_name, PDO::PARAM_STR);
                                 $query->bindParam(':concern_name', $concern_name, PDO::PARAM_STR);
-                                $query->bindParam(':nid', $nid, PDO::PARAM_STR);
                                 $query->bindParam(':email', $email, PDO::PARAM_STR);
                                 $query->bindParam(':phone', $phone, PDO::PARAM_STR);
                                 $query->bindParam(':vaccinated', $vaccinated, PDO::PARAM_STR);
-                                $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
-                                $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
-                                $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+                                $query->bindParam(':national_id', $national_id, PDO::PARAM_STR);
+
+                                if ($vaccinated=='No') {
+                                    $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+                                    $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':second_dose', $booster_dose, PDO::PARAM_STR);
+                                } 
+                                
+                                elseif ($vaccinated=='Yes') {
+                                    $reg_date = 0000-00-00;
+
+                                    $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+                                    $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':booster_dose', $booster_dose, PDO::PARAM_STR);
+                                }
+
+                                else {
+                                    $first_dose = 0000-00-00;
+                                    $second_dose = 0000-00-00;
+                                    $booster_dose = 0000-00-00;
+
+                                    $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+                                    $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':booster_dose', $booster_dose, PDO::PARAM_STR);
+                                }
 
                                 $query->execute();
 
@@ -132,28 +170,71 @@
                         } else {                        // Update Entry
                             
                             try {
+
+
                                 //Get db class
                                 $pdo = new db();
                             
                                 //Connect to db
                                 $pdo = $pdo->connect();
+
+
                             
-                                $sql = "UPDATE Vaccinated SET office_id = :office_id, employee_name = :employee_name, concern_name=:concern_name, 
-                                        email = :email, phone = :phone, vaccinated=:vaccinated, first_dose=:first_dose,  second_dose=:second_dose, reg_date=:reg_date
-                                        WHERE nid = :nid";
+                                $sql = "UPDATE Vaccinated SET office_id=:office_id, employee_name=:employee_name, concern_name=:concern_name, 
+                                        email=:email, phone=:phone, vaccinated=:vaccinated ";
+
+                                        if ($vaccinated=='No') {
+                                            $sql .= ", reg_date=:reg_date, first_dose=:first_dose,  second_dose=:second_dose ,  booster_dose=:booster_dose ";
+                                        } 
+                                        
+                                        elseif ($vaccinated=='Yes') {
+                                            $sql .= ", first_dose=:first_dose,  second_dose=:second_dose ,  booster_dose=:booster_dose ";
+                                        }
+
+                                        else {
+                                            $sql .= ", reg_date=:reg_date, first_dose=:first_dose,  second_dose=:second_dose ,  booster_dose=:booster_dose ";
+                                        }
+
+                                $sql .= "WHERE national_id = :national_id";
                             
                                 $query = $pdo->prepare($sql);
                             
                                 $query->bindParam(':office_id', $office_id, PDO::PARAM_STR);
                                 $query->bindParam(':employee_name', $employee_name, PDO::PARAM_STR);
                                 $query->bindParam(':concern_name', $concern_name, PDO::PARAM_STR);
-                                $query->bindParam(':nid', $nid, PDO::PARAM_STR);
                                 $query->bindParam(':email', $email, PDO::PARAM_STR);
                                 $query->bindParam(':phone', $phone, PDO::PARAM_STR);
                                 $query->bindParam(':vaccinated', $vaccinated, PDO::PARAM_STR);
-                                $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
-                                $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
-                                $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+                                $query->bindParam(':national_id', $national_id, PDO::PARAM_STR);
+
+                                if ($vaccinated=='No') {
+                                    $reg_date = 0000-00-00;
+                                    $first_dose = 0000-00-00;
+                                    $second_dose = 0000-00-00;
+                                    $booster_dose = 0000-00-00;
+
+                                    $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+                                    $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':booster_dose', $booster_dose, PDO::PARAM_STR);
+                                } 
+                                
+                                elseif ($vaccinated=='Yes') {
+                                    $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':booster_dose', $booster_dose, PDO::PARAM_STR);
+                                }
+
+                                else {
+                                    $first_dose = 0000-00-00;
+                                    $second_dose = 0000-00-00;
+                                    $booster_dose = 0000-00-00;
+
+                                    $query->bindParam(':reg_date', $reg_date, PDO::PARAM_STR);
+                                    $query->bindParam(':first_dose', $first_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':second_dose', $second_dose, PDO::PARAM_STR);
+                                    $query->bindParam(':booster_dose', $booster_dose, PDO::PARAM_STR);
+                                }
                             
                                 $query->execute();
                             
@@ -171,7 +252,7 @@
 
 
 
-                        ?>
+                        ?>   
                     </h2>
                 </div>
             </div>
