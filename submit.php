@@ -53,7 +53,7 @@
                         $second_dose = $_POST['second_dose'];
                         $booster_dose = $_POST['booster_dose'];
                         $reg_date = $_POST['reg_date'];
-                        $national_id = $_POST['national_id'];
+                        $national_id = $_POST['nid'];
 
 
                         // Converting Date to DateTime format
